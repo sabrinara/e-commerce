@@ -12,6 +12,7 @@ import AllProducts from './component/Pages/AllProducts';
 import Carts from './component/Pages/Carts';
 import Login from './component/Pages/Login';
 import Registration from './component/Pages/Registration';
+import ProductDetails from './component/Pages/ProductDetails';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
       {
         path: "/allProducts",
         element: <AllProducts></AllProducts>,
+        loader: () => fetch('/products.json')
+      },
+      {
+        path: "/allProducts/:id",
+        element: <ProductDetails></ProductDetails>,
         loader: () => fetch('/products.json')
       },
       {
