@@ -5,10 +5,42 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Home from './component/Shared/Home/Home';
+import Root from './component/layout/Root';
+import Error from './component/layout/Error';
+import AllProducts from './component/Pages/AllProducts';
+import Carts from './component/Pages/Carts';
+import Login from './component/Pages/Login';
+import Registration from './component/Pages/Registration';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root></Root>,
+    errorElement: <Error></Error>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch('/products.json')
+      },
+      {
+        path: "/allProducts",
+        element: <AllProducts></AllProducts>,
+        loader: () => fetch('/products.json')
+      },
+      {
+        path: "/carts",
+        element: <Carts></Carts>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Registration></Registration>,
+      },
+    ]
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
