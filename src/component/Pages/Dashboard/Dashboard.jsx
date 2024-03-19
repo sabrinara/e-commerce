@@ -13,7 +13,7 @@ const Dashboard = () => {
     })
     const length = products.length;
     return (
-        <div>
+        <div className='mx-10'>
             <h1 className='text-4xl my-4 text-center md:mr-20 text-cyan-600 font-bold '>Admin Dashboard</h1>
 
             <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
