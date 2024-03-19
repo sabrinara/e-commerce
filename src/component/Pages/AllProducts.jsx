@@ -35,17 +35,28 @@ const AllProducts = () => {
 
     const handleAddToCart = (product) => {
         const existingCartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        const updatedCartItems = [...existingCartItems, product];
-        localStorage.setItem('cart', JSON.stringify(updatedCartItems));
-        Swal.fire({
-           title: 'Added to cart!',
-           icon: 'success',
-           showConfirmButton: false,
-           timer: 1500
-        })
-        navigate('/carts')
-        
-        
+        const isProductInCart = existingCartItems.some(item => item.id === product.id);
+
+        if (isProductInCart) {
+            // If product is already in cart, show SweetAlert
+            Swal.fire({
+                title: 'Product is already in the cart!',
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            // If product is not in cart, add it to cart
+            const updatedCartItems = [...existingCartItems, product];
+            localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+            Swal.fire({
+                title: 'Added to cart!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate('/carts');
+        }
     };
     return (
         <div className="py-10 ">
