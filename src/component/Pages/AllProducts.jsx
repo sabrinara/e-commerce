@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
+import 'sweetalert2/dist/sweetalert2.css'; 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 const AllProducts = () => {
@@ -71,7 +72,6 @@ const AllProducts = () => {
                                     <div className="flex justify-between gap-24 items-center ">
                                     <button className="bg-cyan-700 text-white py-2 px-4 rounded" onClick={() => handleAddToCart(product)}>Add to Cart</button>
                                     <Link to={`/allProducts/${product.id}`}><button className="bg-violet-500 text-white py-2 px-3 rounded ">View Details</button></Link>
-                                    {/* <button className="bg-cyan-700 text-white py-2 px-4 rounded">Details</button> */}
                                     </div>
                                    
                                 </div>
