@@ -4,8 +4,7 @@ const SideBar = () => {
     return (
         <div className="  ">
             {/* Sidebar content */}
-            <div className="p-4 hidden md:flex h-screen w-40">
-               
+            <div className="p-4 hidden md:flex h-screen w-40 shadow-slate-400 shadow-xl">
                 <ul className="mt-4 ">
                     <li className="my-4">
                         <Link to="dashboard/addCustomer" className=" px-2 py-2 hover:bg-cyan-500 rounded">Add Customer</Link>
