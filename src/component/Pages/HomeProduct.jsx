@@ -28,7 +28,7 @@ const HomeProduct = () => {
 
     return (
         <div>
-            <h1 className="text-4xl text-center font-bold my-10 text-cyan-600 ">Products from Compy!</h1>
+            <h1 className="text-4xl text-center font-bold px-10 py-5 text-cyan-600 ">Products from Compy!</h1>
             <div>
                 {slicedItems.length === 0 ? (
                     <p className="text-center text-3xl text-red-600 font-bold my-24">Cart is empty.</p>

@@ -23,7 +23,7 @@ const Banner = () => {
     };
     return (
         <>
-            <div className='flex flex-col md:flex-row justify-between items-center md:mx-20'>
+            <div className='flex flex-col md:flex-row justify-between items-center md:mx-20 p-20'>
                 <div >
                     <h1  className= 'text-4xl text-center font-bold mb-4 text-red-600 '>Hi! <br /> Welcome to Compy!</h1>
                    <p className='text-2xl text-center font-bold my-4 text-cyan-600 '>
