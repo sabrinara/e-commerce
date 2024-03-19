@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaHeart, FaStar } from "react-icons/fa";
+import { FaBoxOpen } from "react-icons/fa6";
 import { IoCart } from "react-icons/io5";
+import { LiaShippingFastSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 
-// Existing imports and component definition...
 
 const HomeProduct = () => {
     const [items, setItems] = useState([]);
@@ -13,7 +14,7 @@ const HomeProduct = () => {
         axios.get('/products.json')
             .then(res => setItems(res.data))
             .catch(err => console.log(err))
-    }, []); // Add an empty dependency array to useEffect to run it only once
+    }, []); 
 
     const generateStars = (rating) => {
         const stars = [];
@@ -23,15 +24,14 @@ const HomeProduct = () => {
         return stars;
     };
 
-    // Slice the items array to get only the first 6 items
-    const slicedItems = items.slice(0, 5);
+    const slicedItems = items.slice(0, 4);
 
     return (
         <div>
-            <h1 className="text-4xl text-center font-bold px-10 py-5 text-cyan-600 ">Products from Compy!</h1>
+            <h1 className="text-4xl text-center font-bold px-10 text-cyan-600 ">Products from Compy!</h1>
             <div>
                 {slicedItems.length === 0 ? (
-                    <p className="text-center text-3xl text-red-600 font-bold my-24">Cart is empty.</p>
+                    <p className="text-center text-3xl text-red-600 font-bold my-24">No product.</p>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 m-10 md:m-14 lg:m-16 rounded">
                         {slicedItems.map((item, index) => (
@@ -42,13 +42,20 @@ const HomeProduct = () => {
                                             <figure><img src={item.img} className="w-full h-96 md:h-64 lg:h-full lg:object-center rounded" alt="product image" /></figure>
                                         </div>
 
-                                        <div className="card-body w-full md:w-1/2">
-                                            <h2 className="text-md">{item.name}</h2>
-                                            <div className="flex justify-between  ">
+                                        <div className="card-body w-full md:w-1/2 ">
+                                            <h2 className="text-lg font-bold text-cyan-700">{item.name}</h2>
+                                            <div className="  ">
                                                 <p className="font-bold "> <span className="text-black">{item.seller}</span></p>
-                                                <p className="text-right"><IoCart className="text-lime-700 inline " />{item.stock}</p>
+                                               
+                                            
+                                                <p className="">{item.category}</p>
+                                                <div className="flex justify-between  ">
+                                                <p className=""><IoCart className="text-lime-700 inline " />{item.stock}</p>
+                                                <p className="text-right "><FaBoxOpen className="text-sky-700 inline " /> {item.quantity}</p>
+                                                </div>
+                                                <p className=""><LiaShippingFastSolid className="text-sky-700 inline text-2xl" /> {item.shipping}</p>
                                             </div>
-                                            <p className="">{item.category}</p>
+
                                             <div className="flex justify-between items-center ">
                                                 <p><FaHeart className="text-pink-600 inline items-end" /> {item.ratingsCount}</p>
                                                 <Link to={`/allProducts/${item.id}`}><button className="bg-cyan-600 text-white py-1 px-2 text-sm rounded text-end">View</button></Link>
@@ -58,6 +65,7 @@ const HomeProduct = () => {
                                                 <p>Price: <span className="text-red-600">{item.price}$</span></p>
                                                 <p className="text-right">{generateStars(item.ratings)}</p>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
