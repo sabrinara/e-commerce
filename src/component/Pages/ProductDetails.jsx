@@ -3,7 +3,7 @@ import { IoCart } from "react-icons/io5";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { SiBrandfolder } from "react-icons/si";
 import { LiaShippingFastSolid } from "react-icons/lia";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import {  useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.css';
 

@@ -29,6 +29,9 @@ const NavBar = () => {
             <li>
                 <NavLink to="/logout">Logout</NavLink>
             </li>
+            <li>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+            </li>
 
 
             {/* {user ?
