@@ -1,17 +1,28 @@
 import axios from "axios";
-import { useEffect, useState } from "react"; // Import useState
+import { useEffect, useState } from "react"; 
 import { Link, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const AllProducts = () => {
-    const [allProducts, setAllProducts] = useState([]); // Initialize allProducts with an empty array and use useState
+    const [allProducts, setAllProducts] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("/products.json")
             .then(res => setAllProducts(res.data))
             .catch(err => console.log(err));
+           
     }, []); 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            offset: 100,
+            easing: 'ease-in-out',
+            once: true,
+        });
+    }, []);
 
     const generateStars = (rating) => {
         const stars = [];
@@ -45,21 +56,21 @@ const AllProducts = () => {
                             <figure><img src={product.img} className="w-full h-96 md:h-64 lg:h-full lg:object-center" alt="Product" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{product.name}</h2>
-                                <div className="flex justify-between items-center  gap-28">
-                                <p>{product.category}</p>
+                                <div className="flex justify-between   gap-28 ">
                                 <p className="text-cyan-900 font-bold "> <span className="text-black">{product.seller}</span></p>
+                                <p className="text-right">{product.category}</p>
                                 </div>
                                 <div className="flex justify-between items-center gap-32">
                                     
                                      <p>Price: <span className="text-red-600">{product.price}$</span></p>
-                                     <p className="">{generateStars(product.ratings)}</p> 
+                                     <p className="text-right">{generateStars(product.ratings)}</p> 
                                 </div>
                                
                                
                                 <div className="card-actions">
-                                    <div className="flex justify-between gap-28">
+                                    <div className="flex justify-between gap-24 items-center ">
                                     <button className="bg-cyan-700 text-white py-2 px-4 rounded" onClick={() => handleAddToCart(product)}>Add to Cart</button>
-                                    <Link to={`/allProducts/${product.id}`}><button className="bg-cyan-700 text-white py-2 px-4 rounded">View Details</button></Link>
+                                    <Link to={`/allProducts/${product.id}`}><button className="bg-violet-500 text-white py-2 px-3 rounded ">View Details</button></Link>
                                     {/* <button className="bg-cyan-700 text-white py-2 px-4 rounded">Details</button> */}
                                     </div>
                                    
